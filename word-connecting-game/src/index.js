@@ -24,7 +24,7 @@ while (true) {
 //ver2
 //////////
 ////////////////////
-var body = document.body;
+const body = document.body;
 
 document.title = 'word connecting game';
 
@@ -41,7 +41,7 @@ gameInfo.innerHTML = infoKr + '<br />' + infoEn;
 document.body.append(gameInfo);
 
 //first connecting word
-var word = document.createElement('div');
+const word = document.createElement('div');
 word.textContent = 'jamin';
 document.body.append(word);
 
