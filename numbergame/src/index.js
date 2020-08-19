@@ -43,31 +43,35 @@ form.addEventListener('submit', function callBack(e) {
     inputBox.value = '';
     inputBox.focus();
     collectNum();
+    numError = 0;
   } else {
+    // 답이틀린경우
     var answerArray = answer.split('');
     var strike = 0;
     var ball = 0;
     numError += 1;
+    console.log(`numError: ${numError}`);
     if (numError > 10) {
       //10번 넘게 틀린경우
-      result.textContent = `10번 넘게 틀려서 실패! 답은 ${numArray} !!`;
+      result.textContent = `10번 넘게 틀려서 실패! 답은 ${numArray.join('')} 입니다.`;
       inputBox.value = '';
       inputBox.focus();
       collectNum();
-      var numError = 0;
-    }
-    console.log('답이 틀렸다.', answerArray);
-    for (var i = 0; i < 3; i += 1) {
-      if (Number(answerArray[i]) === numArray[i]) {
-        console.log('같은자리인지 확인');
-        strike += 1;
-      } else if (numArray.indexOf(Number(answerArray[i])) > -1) {
-        console.log('겹치는숫자가 있는가?');
-        ball = +1;
+      numError = 0;
+    } else {
+      //10번 미만으로 틀린경우
+      for (var i = 0; i < 3; i += 1) {
+        if (Number(answerArray[i]) === numArray[i]) {
+          console.log('같은자리인지 확인');
+          strike += 1;
+        } else if (numArray.indexOf(Number(answerArray[i])) > -1) {
+          console.log('겹치는숫자가 있는가?');
+          ball = +1;
+        }
       }
+      result.textContent = `strike :${strike}  /  ball: ${ball}`;
+      inputBox.value = '';
+      inputBox.focus();
     }
-    result.textContent = `strike :${strike}  /  ball: ${ball}`;
-    inputBox.value = '';
-    inputBox.focus();
   }
 });
